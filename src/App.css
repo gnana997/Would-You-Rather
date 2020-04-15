@@ -28,6 +28,93 @@
   color: #61dafb;
 }
 
+.avatar {
+  height: 150px;
+  width : 150px;
+  border-radius: 150px;
+  margin: 10px 40px 10px 40px;
+  padding-right: 10px;
+}
+
+.vl {
+  border-right: 1px solid #dad7d7;
+  width: 40%;
+}
+
+.question {
+  width: 100%;
+  max-width: 590px;
+  display: flex;
+  margin: 0 auto;
+  border: 1px solid #dad7d7;
+  border-radius: 3px;
+  cursor: pointer;
+  flex-direction: column;
+}
+
+.author-name {
+  border-bottom: 1px solid #dad7d7;
+  margin: 0px 0px 5px 0px;
+  display: flex;
+  width: 100%;
+  max-width: 590px;
+}
+
+.author-name > h3{
+  margin: 2px 2px 2px 10px;
+}
+
+.question-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.question-comp{
+  width: 60%;
+  font-size: 18px;
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.question-comp > h4{
+  margin-bottom: unset;
+}
+
+.question-comp > button{
+  width: auto;
+  margin: 0px 8px 0px 8px;
+  border-radius: 4px;
+}
+
+.question-text{
+  width: 50%;
+  float: left;
+  padding: 4px;
+}
+
+.question-text > p{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mainHome{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+}
+
+.tabs{
+  display: flex;
+  flex-direction: row;
+}
+
+/* .view-poll{
+
+} */
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
