@@ -5,7 +5,6 @@ export default function questions(state = {}, action){
         case RECEIVE_QUESTIONS:
             return action.questions
         case ANSWER_QUESTION:
-            console.log(state[action.authedUser])
             return {
                 ...state,
                 [action.id]:{

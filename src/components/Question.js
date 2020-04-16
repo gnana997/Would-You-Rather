@@ -1,13 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Link} from 'react-router-dom'
+import HomeQuestion from './HomeQuestion'
 
 class Question extends Component{
-
-    toQuestion = (e,id) => {
-        e.preventDefault()
-        this.props.history.push(`/question/${id}`)
-    }
 
     render(){
         const {question, user, currentUser} = this.props
@@ -34,15 +29,7 @@ class Question extends Component{
                     <div className = 'vl'>
                         <img src = {avatarURL} alt = {`Avatar of ${author}`} className = 'avatar' />
                     </div>
-                    <div className= 'question-comp'>
-                        <div className= 'question-text'>
-                            <h4>
-                                Would you rather  
-                            </h4>
-                            <p>{`...${(question[answer]['text'])}`}</p>
-                        </div>
-                        <Link className = 'view-poll' to = {`/question/${id}`}>View Poll</Link>
-                    </div>
+                    <HomeQuestion id = {id} answer= {(question[answer]['text'])}/>
                 </div>
             </div>
         )
@@ -60,4 +47,4 @@ function mapStateToProps({authedUser,users,questions},{id}){
     }
 }
 
-export default withRouter(connect(mapStateToProps)(Question))
+export default connect(mapStateToProps)(Question)
