@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleAnswerQuestion } from "../actions/questions";
+import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
+import Image from 'react-bootstrap/Image'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import ProgressBar from 'react-bootstrap/ProgressBar'
+import Form from 'react-bootstrap/Form'
 
 class QuestionsPage extends Component {
   state = {
@@ -20,6 +27,10 @@ class QuestionsPage extends Component {
     console.log(id);
     const { dispatch } = this.props;
     dispatch(handleAnswerQuestion(id, answer));
+    this.setState({
+        answer: answer,
+        isAnswered: true
+    })
   };
 
   componentDidMount() {
@@ -44,84 +55,73 @@ class QuestionsPage extends Component {
     const {questions, id, users } = this.props;
     const question = questions[id];
     const currentUser = users[questions[id]["author"]];
-    const total = Object.keys(users).length
+    const total = question['optionOne']['votes'].length + question['optionTwo']['votes'].length
     
     const optOnePoll = (question['optionOne']['votes'].length)/total
     console.log(question['optionOne']['votes'].length/total)
     const optTwoPoll = (question['optionTwo']['votes'].length)/total
     const { avatarURL } = currentUser;
     return (
-      <div>
-        <div className="question">
-          <div className="author-name">
+        <Container className='ques-container'>
+          <Row className = 'ques-author' noGutters>
             <h3>{`${currentUser["name"]} asks:`}</h3>
-          </div>
-          <div className="question-info">
-            <div className="vl">
-              <img
-                src={avatarURL}
-                alt={`Avatar of ${currentUser["name"]}`}
-                className="avatar"
-              />
-            </div>
-            <div className="question-comp">
-              {this.state.isAnswered ? (
-                <div>
-                    <h2>
-                        Results:
-                    </h2>
-                    <div className = {`optionComp ${(this.state.answer === 'optionOne' && 'response')}`}>
-                        <p>
-                            {`Would you rather ${question["optionOne"]["text"]}`}
-                        </p>
-                        <div className = 'ProgressBar' >
-                            <div className= 'Filler' style = {{width: `${optOnePoll*100}%`}}>
-                            {Math.round(optOnePoll*100) > 0 && Math.round(optOnePoll*100)}
-                            </div>
-                        </div>
-                    </div>
-                    <div className = {`optionComp ${(this.state.answer === 'optionTwo' && 'response')}`}>
-                        <p>
-                            {`Woud you rather ${question["optionTwo"]["text"]}`}
-                        </p>
-                        <div className = 'ProgressBar'>
-                            <div className= 'Filler' style = {{width: `${optTwoPoll*100}%`}}>
-                            {Math.round(optTwoPoll*100) > 0 && Math.round(optTwoPoll*100)}
-                            </div>
-                        </div>
+          </Row>
+          <Row noGutters className='ques-info'>
+            <Col xs= {4}>
+              <Image className= 'image' width={171} height={180} src={avatarURL} roundedCircle/>
+            </Col>
+            
+            {this.state.isAnswered ? (
+              <Col xs= {8}>
+                <Row noGutters>
+                  <h3 className="h3">Results: </h3>
+                </Row>
+                <Row noGutters>
+                  <Col className='px-3'>
+                    <Row noGutters>
+                      <p className='ques'>{`Would you rather ${question["optionOne"]["text"]}`}</p>
+                    </Row>
+                    <Row noGutters>
+                      <ProgressBar now={optOnePoll*100} label={`${Math.round(optOnePoll*100)}%`} />
+                    </Row>
+                    <Row noGutters >
+                      <p className="total">{`${question['optionOne']['votes'].length} out of ${total}`}</p>
+                    </Row>
+                  </Col>
+                </Row>
+                <Row noGutters>
+                  <Col className='px-3'>
+                    <Row noGutters>
+                      <p className='ques'>{`Would you rather ${question["optionTwo"]["text"]}`}</p>
+                    </Row>
+                    <Row noGutters>
+                      <ProgressBar now={optTwoPoll*100} label={`${Math.round(optTwoPoll*100)}%`} />
+                    </Row>
+                    <Row noGutters >
+                      <p className="total">{`${question['optionTwo']['votes'].length} out of ${total}`}</p>
+                    </Row>
+                  </Col>
+                </Row>
+              </Col>
+            ):(
+              <Col xs= {8}>
+                <Row noGutters>
+                  <h3 className="h3">Would You Rather... </h3>
+                </Row>
+                <Row noGutters>
+                  <Form className = 'form' onSubmit = {(e) => this.handleSubmit(e, id, this.state.answer)}>
+                    <Form.Check type = 'radio' id={`default-radio`} label = {question["optionOne"]["text"]} value = 'optionOne' onClick = {this.handleClick}/>
+                    <Form.Check type = 'radio' id={`default-radio`} label = {question["optionTwo"]["text"]} value = 'optionTwo' onClick = {this.handleClick}/>
+                    <Button variant="primary" type="submit" >
+                      Submit
+                    </Button>
+                  </Form>
+                </Row>
 
-                    </div>
-                </div>
-              ) : (
-                <div className="question-text">
-                  <h4>Would you rather</h4>
-                  <form
-                    onSubmit={(e) =>
-                      this.handleSubmit(e, id, this.state.answer)
-                    }
-                  >
-                    <input
-                      type="radio"
-                      value="optionOne"
-                      name="answers"
-                      onClick={this.handleClick}
-                    />{" "}
-                    {question["optionOne"]["text"]}
-                    <input
-                      type="radio"
-                      value="optionTwo"
-                      name="answers"
-                      onClick={this.handleClick}
-                    />{" "}
-                    {question["optionTwo"]["text"]}
-                    <button type="submit">Submit</button>
-                  </form>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
+              </Col>
+            )}
+          </Row>
+        </Container>
     );
   }
 }
