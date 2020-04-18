@@ -24,12 +24,12 @@ class Question extends Component{
         const answer = currentUser['answers'][id] ? currentUser['answers'][id] : 'optionOne'
         console.log(answer)
         return (
-            <Container>
+            <Container className = 'cont'>
                 <Row className = 'ques-author'>
                     <h3>{`${user["name"]} asks:`}</h3>
                 </Row>
                 <Row noGutters className='ques-info'>
-                    <Col xs= {4}>
+                    <Col xs= {4} className = 'col-image'>
                         <Image className = 'image' width={171} height={180} src={avatarURL} roundedCircle/>
                     </Col>
                     <Col xs= {8}>

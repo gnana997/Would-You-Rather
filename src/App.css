@@ -1,10 +1,16 @@
 .App {
   text-align: center;
 }
+.row-score{
+  border: 1px solid lightgray;
+}
+.score-class{
+  background-color: #cccccc;
+}
 
-.App-home{
+.App-home {
   width: 60%;
-  margin: auto
+  margin: auto;
 }
 
 .App-logo {
@@ -35,7 +41,7 @@
 
 .avatar {
   height: 150px;
-  width : 150px;
+  width: 150px;
   border-radius: 150px;
   margin: 10px 40px 10px 40px;
   padding-right: 10px;
@@ -71,7 +77,7 @@
   max-width: 590px;
 }
 
-.author-name > h3{
+.author-name > h3 {
   margin: 2px 2px 2px 10px;
 }
 
@@ -80,131 +86,151 @@
   flex-direction: row;
 }
 
-.question-page-info{
+.question-page-info {
   display: flex;
   flex-direction: row;
   height: 100%;
 }
 
-.container{
-  width: 100%;
-  margin: auto;
-  background-color: #f7f7f7;
-  border: 1px solid black;
+.cont{
+  width: fit-content;
+  background-color: #ffffff;
+  border: 1px solid lightgray;
   margin-bottom: 5px;
   margin-top: 5px;
 }
 
-.h3{
+.h3 {
   margin-left: 15px;
 }
 
-.col-4{
+.col-image {
   border-right: 1px solid black;
   margin: auto;
 }
 
-
-.col-8{
+.col-8 {
   margin: auto;
 }
 
-.form{
+.form {
   text-align: start;
   width: 100%;
   margin-left: 12px;
   margin-right: 14px;
 }
 
-.btn{
+.btn {
   margin-bottom: 10px;
   width: 100%;
   margin-top: 3px;
 }
 
-.progress{
+.url{
+  margin-left: 30px;
+  border: 1px solid;
+  padding: 0px 10px 0px 10px
+}
+
+.progress {
   width: 100%;
   margin-bottom: 10px;
   height: 25px !important;
 }
 
-.image{
+.image {
   margin-top: 12px;
   margin-bottom: 12px;
 }
 
-.leaderboard-col-4{
+.position-col {
+  display: inline-block;
+}
+
+.selected-answer {
+  background-color: #51dacf;
+  border: 1px solid #105e62 !important;
+}
+
+.not-poll{
+  width: 80%;
+}
+
+.position-answer {
+  display: flex;
+  width: 70px;
+  border-radius: 100% !important;
+  padding: 10px;
+  position: relative;
+  float: right;
+  left: 20px;
+  bottom: 40px;
+  z-index: 1;
+  background-color: #ffbe00;
+  border-radius: 5px;
+}
+
+.leaderboard-col-4 {
   margin-left: 0px;
   margin-right: 0px;
 }
 
-.leaderboard-image{
+.leaderboard-image {
   margin-top: 12px;
   margin-bottom: 12px;
 }
 
-.total{
+.total {
   text-align: center;
   margin-bottom: 0px;
   width: 100%;
   text-align: center;
 }
 
-.col{
-  margin : 15px;
-  border: 1px solid black;
-  padding: 10px;
-}
-
-.a{
+.a {
   margin-left: 15px;
   margin-right: 3px;
   width: 100%;
 }
 
-.ques-container{
+.ques-container {
   border: 1px solid;
+  background-color: #ffffff;
   padding-left: 0px !important;
   padding-right: 0px !important;
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
 }
 
-.btn-custom{
+.btn-custom {
   width: 100%;
 }
 
-.ques-info{
-  background-color: #f7f7f7;
+.ques-info {
+  background-color: #ffffff;
 }
 
-.ques-author{
+.ques-author {
   border-bottom: 1px solid black;
-  margin-bottom: 10px;
-  background-color: #ececec;
+  background-color: #f9f6f7;
 }
 
-.ques-author > h3{
+.ques-author > h3 {
   margin-left: 10px;
 }
 
-.ques{
+.ques {
   margin-bottom: 6px;
+  text-align: start;
 }
 
-.ques-text{
+.ques-text {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-left: 15px;
 }
 
-.question-page{
+.question-page {
   width: 100%;
   max-width: 590px;
   display: flex;
@@ -216,7 +242,7 @@
   height: 300px;
 }
 
-.question-comp{
+.question-comp {
   width: 60%;
   font-size: 13px;
   margin: 5px 0;
@@ -224,57 +250,57 @@
   flex-direction: column;
 }
 
-.question-comp > h4{
+.question-comp > h4 {
   margin-bottom: unset;
 }
 
-.question-comp > button{
+.question-comp > button {
   width: auto;
   margin: 0px 8px 0px 8px;
   border-radius: 4px;
 }
 
-.question-text{
+.question-text {
   width: 50%;
   float: left;
   padding: 4px;
 }
 
-.question-text > p{
+.question-text > p {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.mainHome{
+.mainHome {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: auto;
 }
 
-.tabs{
+.tabs {
   display: flex;
   flex-direction: row;
 }
 
-.pTag{
-  font: 10px
+.pTag {
+  font: 10px;
 }
 
-.ProgressBar{
+.ProgressBar {
   position: relative;
   height: 30px;
   width: 100%;
   border-radius: 30px;
-  border: 1px solid #333333
+  border: 1px solid #333333;
 }
 
-.Filler{
+.Filler {
   background: #1da598;
   height: 100%;
   border-radius: inherit;
-  transition: width .2s ease-in;
+  transition: width 0.2s ease-in;
 }
 
 /* .view-poll{

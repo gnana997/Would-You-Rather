@@ -8,10 +8,12 @@ import Image from 'react-bootstrap/Image'
 class LeaderBoard extends Component{
     render(){
         const {userToScore,users} = this.props
+        userToScore.sort((a,b) => b.score - a.score)
+        console.log(userToScore)
         return(
             <div>
                 {userToScore.map((user) => (
-                    <Container className = 'ques-container'>
+                    <Container key = {user.id} className = 'cont'>
                         <Row noGutters>
                             <Col xs={4} className = 'leaderboard-col-4'>
                                 <Image className='leaderboard-image' width={171} height={180} src={users[user.id].avatarURL} roundedCircle/>
@@ -30,7 +32,7 @@ class LeaderBoard extends Component{
                                         <p>{Object.keys(users[user.id].answers).length}</p>
                                     </Col>
                                 </Row>
-                                <Row>
+                                <Row noGutters>
                                     <Col xs= {8}>
                                         <p> Created Questions: </p>
                                     </Col>
@@ -40,12 +42,20 @@ class LeaderBoard extends Component{
                                 </Row>
                             </Col>
                             <Col xs = {2}>
+                                <div className="m-2 row-score">
                                 <Row noGutters>
-                                    <p>Score:</p>
+                                    <Col className="score-class">
+                                        <p>Score:</p>
+                                    </Col> 
                                 </Row>
                                 <Row noGutters>
-                                    <p>{ user.score}</p>
+                                    <Col>
+                                        <div className="py-4">
+                <span className="bg-success border px-2 rounded-circle">{user.score}</span>
+                                        </div>
+                                    </Col>
                                 </Row>
+                                </div>
                             </Col>
                         </Row>
                     </Container>
