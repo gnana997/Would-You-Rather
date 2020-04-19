@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { handleAnswerQuestion } from "../actions/questions";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { handleAnswerQuestion } from "../actions/questions"
+import { withRouter } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
@@ -12,7 +13,7 @@ import Form from 'react-bootstrap/Form'
 class QuestionsPage extends Component {
   state = {
     answer: "",
-    isAnswered: false,
+    isAnswered: false
   };
 
   handleClick = (e) => {
@@ -51,16 +52,25 @@ class QuestionsPage extends Component {
     }
   }
 
+  checkQuestion = (question) => {
+    if(!question){
+      return false
+    }
+    return true
+  }
+
   render() {
     const {questions, id, users } = this.props;
-    const question = questions[id];
-    const currentUser = users[questions[id]["author"]];
-    const total = question['optionOne']['votes'].length + question['optionTwo']['votes'].length
-    
-    const optOnePoll = (question['optionOne']['votes'].length)/total
-    const optTwoPoll = (question['optionTwo']['votes'].length)/total
-    const { avatarURL } = currentUser;
-    return (
+    const isQuestion = this.checkQuestion(questions[id]);
+    if(isQuestion){
+      const question = questions[id]
+      const currentUser = users[question["author"]];
+      const total = question['optionOne']['votes'].length + question['optionTwo']['votes'].length
+      
+      const optOnePoll = (question['optionOne']['votes'].length)/total
+      const optTwoPoll = (question['optionTwo']['votes'].length)/total
+      const { avatarURL } = currentUser;
+      return (
         <Container className='ques-container'>
           <Row className = 'ques-author' noGutters>
             <h3>{`${currentUser["name"]} asks:`}</h3>
@@ -145,6 +155,12 @@ class QuestionsPage extends Component {
           </Row>
         </Container>
     );
+    }
+    else{
+      return (
+        <h2>The question you are searching doesn't exist.. Please Go Back to Home </h2>
+      )
+    }
   }
 }
 
@@ -159,4 +175,4 @@ function mapStateToProps({ authedUser, users, questions }, props) {
   };
 }
 
-export default connect(mapStateToProps)(QuestionsPage);
+export default withRouter(connect(mapStateToProps)(QuestionsPage));
