@@ -14,7 +14,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
-import NavBar from './Nav';
+import Nav from './Nav';
 import Col from 'react-bootstrap/Col'
 
 class App extends Component {
@@ -58,7 +58,8 @@ class App extends Component {
           <LoadingBar />
           <div className="App">
 
-            <NavBar />
+            <Nav />
+            <hr class="bg-success rule mt-0"></hr>
             {this.props.loading === true ? (
               <Container className='w-50'>
                 <Row noGutters>

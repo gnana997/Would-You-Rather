@@ -30,10 +30,10 @@ class Home extends Component{
         return(
             <div className = 'mainHome'>
                 <div className = 'tabs'>
-                    <button value = 'false' onClick = {this.handleChange}>Unanswered Questions</button>
-                    <button value = 'true' onClick = {this.handleChange}>Answered Questions</button>
+                    <button className={`btn my-0 py-2 ${(!this.state.isAnswered && 'active-tab')} border-right btn-shadow`} value = 'false' onClick = {this.handleChange}>Unanswered Questions</button>
+                    <button className={`btn my-0 py-2 ${(this.state.isAnswered && 'active-tab')} btn-shadow`} value = 'true' onClick = {this.handleChange}>Answered Questions</button>
                 </div>
-                <div className='questionsDiv'>
+                <div className='questionsDiv p-2'>
                     { this.state.isAnswered ? answeredQuestions.map((id) => (
                             <Question key = {id} id = {id}/>
                     )) : unansweredQuestions.map((id) => (
