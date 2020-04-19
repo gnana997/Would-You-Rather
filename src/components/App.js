@@ -59,7 +59,7 @@ class App extends Component {
           <div className="App">
 
             <Nav />
-            <hr class="bg-success rule mt-0"></hr>
+            <hr className="bg-success rule mt-0"></hr>
             {this.props.loading === true ? (
               <Container className='w-50'>
                 <Row noGutters>
